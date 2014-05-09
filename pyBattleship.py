@@ -2,11 +2,9 @@ import boards
 import enemyAI
 
 def main():
-    MAX_HITS = 17
     enemyDead = False
     playerDead = False
-    hitsOnEnemy = 0
-    hitsOnPlayer = 0
+    targetingMode = False
     target = [99,99]    #99, 99 is the null target value
     turn = 1
     
@@ -27,7 +25,6 @@ def main():
         if enemyLocations[row][col] == "o":
             #It's a hit!
             enemyBoard[row][col] = "*"
-            hitsOnEnemy += 1
         else:
             if(row < 0 or row > boards.BOARD_SIZE - 1) or (col < 0 or col > boards.BOARD_SIZE - 1):
                 print("Oops, that's not even in the ocean.")
@@ -50,9 +47,9 @@ def main():
                 target = [99,99] #Set to null, ship was sunk
         
         #Check if either player is dead
-        if hitsOnEnemy == MAX_HITS:
+        if not isAlive(enemyLocations):
             enemyDead = True
-        elif hitsOnPlayer == MAX_HITS:
+        elif not isAlive(playerBoard):
             playerDead = True
         
         turn += 1
@@ -64,5 +61,12 @@ def main():
         print("YOU WIN!")
     else:
         print("YOU LOSE!")
+
+def isAlive(board):
+    for line in board:
+        for space in line:
+            if space == "o":
+                return True
+    return False
 
 main()
