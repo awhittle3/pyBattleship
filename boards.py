@@ -41,7 +41,7 @@ board3 = [[x,x,x,x,x,x,x,x,x,x],
 def selectRand():
     n = [randint(1,3), randint(1,3)]
     if n[0] == n[1]:
-        selectRand()
+        n = selectRand()
     return n
 
 #Select a board from pre-made boards
