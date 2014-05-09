@@ -23,8 +23,13 @@ def selectTarget():
     if (n[0] + n[1]) % 2 != 0:
         n[0] += 1
         if n[0] == BOARD_SIZE:
-            n[0] = 0 #Semantic error: May not satisfy smart grid
-            n[1] += 1
+            if n[1]%2 == 0:
+                n[0] = 1
+                n[1] += 1
+            else:
+                n[0] = 0
+                n[1] += 1
+                
             if n[1] == BOARD_SIZE:
                 n[0] = 0
                 n[1] = 0
