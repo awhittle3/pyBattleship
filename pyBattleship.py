@@ -1,7 +1,8 @@
 import boards
 
 def main():
-    alive = True
+    playerDead = False
+    enemyDead = False
     
     enemyBoard = boards.makeEnemyBoard()
     enemyLocations = boards.setupEnemyBoard()
@@ -10,11 +11,16 @@ def main():
     print("----BATTLESHIP----")
     boards.printBoards(enemyBoard, playerBoard)
     
-    while alive:
+    while not playerDead and not enemyDead:
         row = int(input("Guess row: "))
         col = int(input("Guess coloumn: "))
         
-        #Make false for testing purposes
-        alive = False
+        #Make true for testing purposes
+        enemyDead = True
+    
+    if enemyDead:
+        print("You win!")
+    else:
+        print("You lose!")
 
 main()
