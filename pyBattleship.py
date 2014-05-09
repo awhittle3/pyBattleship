@@ -21,18 +21,19 @@ def main():
         row = int(input("Guess row: ")) - 1
         col = int(input("Guess coloumn: ")) - 1
         
-        #Player choice evaluated
-        if enemyLocations[row][col] == "o":
-            #It's a hit!
-            enemyBoard[row][col] = "*"
+        if(row < 0 or row > boards.BOARD_SIZE - 1) or (col < 0 or col > boards.BOARD_SIZE - 1):
+            print("Oops, that's not even in the ocean.")
         else:
-            if(row < 0 or row > boards.BOARD_SIZE - 1) or (col < 0 or col > boards.BOARD_SIZE - 1):
-                print("Oops, that's not even in the ocean.")
-            elif(enemyBoard[row][col] == "X" or enemyBoard[row][col] == "*"):
-                print("You guessed that one already.")
+            #Player choice evaluated
+            if enemyLocations[row][col] == "o":
+                #It's a hit!
+                enemyBoard[row][col] = "*"
             else:
-                #It's a miss
-                enemyBoard[row][col] = "X"        
+                if(enemyBoard[row][col] == "X" or enemyBoard[row][col] == "*"):
+                    print("You guessed that one already.")
+                else:
+                    #It's a miss
+                    enemyBoard[row][col] = "X"        
         
         #Enemy turn
         if targetingMode == False:
