@@ -29,7 +29,7 @@ def makeEnemyBoard():
     board = []
     #Print ~ for unknown ocean spaces
     for x in range(BOARD_SIZE):
-        board.append('~' * BOARD_SIZE)
+        board.append(['~'] * BOARD_SIZE)
     return board
 
 #Set ships on enemy board, invisible to player
