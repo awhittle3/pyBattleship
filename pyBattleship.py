@@ -1,11 +1,11 @@
 import boards
 
 def main():
-    BOARD_SIZE = 10
     alive = True
     
-    enemyBoard = boards.makeEnemyBoard(BOARD_SIZE)
-    playerBoard = boards.makePlayerBoard(BOARD_SIZE)
+    enemyBoard = boards.makeEnemyBoard()
+    enemyLocations = boards.setupEnemyBoard()
+    playerBoard = boards.makePlayerBoard()
     
     print("----BATTLESHIP----")
     boards.printBoards(enemyBoard, playerBoard)

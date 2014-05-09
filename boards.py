@@ -1,25 +1,45 @@
+BOARD_SIZE = 10
+x = '~' #Empty ocean
+o = 'o' #Ships
+
+board1 = [[x,x,x,x,x,x,x,x,x,x],
+          [x,o,o,x,x,x,x,x,x,x],
+          [x,x,x,x,x,x,x,x,x,x],
+          [x,o,x,x,x,x,x,x,x,x],
+          [x,o,x,o,o,o,x,x,x,x],
+          [x,o,x,x,x,x,x,x,x,x],
+          [x,o,x,x,x,x,x,x,x,o],
+          [x,o,x,x,x,x,x,x,x,o],
+          [x,x,x,x,o,o,o,o,x,o],
+          [x,x,x,x,x,x,x,x,x,x],]
+
+board2 = [[x,x,x,o,o,o,o,x,x,x],
+          [x,x,x,x,x,x,x,x,x,x],
+          [x,x,o,x,x,x,x,x,x,x],
+          [x,x,o,x,o,x,x,x,x,x],
+          [x,x,o,x,o,x,x,x,x,x],
+          [x,x,x,x,o,x,x,x,x,x],
+          [x,x,x,x,o,x,x,x,x,x],
+          [x,x,x,x,o,x,o,o,o,x],
+          [x,x,x,x,x,x,x,x,x,x],
+          [x,o,o,x,x,x,x,x,x,x],]
+
 #Makes the enemy board that the player sees
-def makeEnemyBoard(size):
+def makeEnemyBoard():
     board = []
     #Print ~ for unknown ocean spaces
-    for x in range(size):
-        board.append('~' * size)
+    for x in range(BOARD_SIZE):
+        board.append('~' * BOARD_SIZE)
+    return board
+
+#Set ships on enemy board, invisible to player
+def setupEnemyBoard():
+    board = board2
     return board
 
 #Makes the player's board with pre-arranged ships
-def makePlayerBoard(size):
-    x = '~' #Empty ocean
-    o = 'o' #Ships
-    board = [[x,x,x,x,x,x,x,x,x,x],
-             [x,o,o,x,x,x,x,x,x,x],
-             [x,x,x,x,x,x,x,x,x,x],
-             [x,o,x,x,x,x,x,x,x,x],
-             [x,o,x,o,o,o,x,x,x,x],
-             [x,o,x,x,x,x,x,x,x,x],
-             [x,o,x,x,x,x,x,x,x,o],
-             [x,o,x,x,x,x,x,x,x,o],
-             [x,x,x,x,o,o,o,o,x,o],
-             [x,x,x,x,x,x,x,x,x,x],]
+def makePlayerBoard():
+    board = board1
     return board
     
 #Prints two boards
