@@ -1,4 +1,5 @@
 import boards
+import enemyAI
 
 def main():
     MAX_HITS = 17
@@ -6,6 +7,7 @@ def main():
     playerDead = False
     hitsOnEnemy = 0
     hitsOnPlayer = 0
+    target = [99,99]    #99, 99 is the null target value
     turn = 1
     
     n = boards.selectRand() #Select two random boards
@@ -26,7 +28,6 @@ def main():
             #It's a hit!
             enemyBoard[row][col] = "*"
             hitsOnEnemy += 1
-            
         else:
             if(row < 0 or row > boards.BOARD_SIZE - 1) or (col < 0 or col > boards.BOARD_SIZE - 1):
                 print("Oops, that's not even in the ocean.")
@@ -35,6 +36,18 @@ def main():
             else:
                 #It's a miss
                 enemyBoard[row][col] = "X"        
+        
+        #Enemy turn
+        if targetingMode == False:
+            #Guess a random location
+            target = enemyAI.guessing(playerBoard)
+            if target != [99,99]:
+                targetingMode = True #Ship was hit, target ship
+        else:
+            #Try to sink a targeted ship
+            targetingMode = enemyAI.targeting(playerBoard, target)
+            if targetingMode == False:
+                target = [99,99] #Set to null, ship was sunk
         
         #Check if either player is dead
         if hitsOnEnemy == MAX_HITS:
