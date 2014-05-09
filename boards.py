@@ -1,3 +1,5 @@
+from random import randint
+
 BOARD_SIZE = 10
 x = '~' #Empty ocean
 o = 'o' #Ships
@@ -24,6 +26,32 @@ board2 = [[x,x,x,o,o,o,o,x,x,x],
           [x,x,x,x,x,x,x,x,x,x],
           [x,o,o,x,x,x,x,x,x,x],]
 
+board3 = [[x,x,x,x,x,x,x,x,x,x],
+          [x,x,x,x,x,x,x,x,x,x],
+          [x,o,o,o,o,o,x,x,o,o],
+          [x,x,x,x,x,x,x,x,x,x],
+          [x,x,o,x,x,x,x,x,x,x],
+          [o,x,o,x,x,x,x,x,x,x],
+          [o,x,o,x,x,x,x,x,x,x],
+          [o,x,o,x,x,x,x,x,x,x],
+          [x,x,x,x,x,o,o,o,x,x],
+          [x,x,x,x,x,x,x,x,x,x],]
+
+#Select two different random numbers
+def selectRand():
+    n = [randint(1,3), randint(1,3)]
+    if n[0] == n[1]:
+        selectRand()
+    return n
+
+#Select a board from pre-made boards
+def selectBoard(n):
+    return {
+        1 : board1,
+        2 : board1,
+        3 : board3
+        }.get(n, board1)
+
 #Makes the enemy board that the player sees
 def makeEnemyBoard():
     board = []
@@ -32,16 +60,6 @@ def makeEnemyBoard():
         board.append(['~'] * BOARD_SIZE)
     return board
 
-#Set ships on enemy board, invisible to player
-def setupEnemyBoard():
-    board = board2
-    return board
-
-#Makes the player's board with pre-arranged ships
-def makePlayerBoard():
-    board = board1
-    return board
-    
 #Prints two boards
 def printBoards(board1, board2):
     

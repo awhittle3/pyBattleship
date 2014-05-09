@@ -8,9 +8,10 @@ def main():
     hitsOnPlayer = 0
     turn = 1
     
+    n = boards.selectRand() #Select two random boards
     enemyBoard = boards.makeEnemyBoard()
-    enemyLocations = boards.setupEnemyBoard()
-    playerBoard = boards.makePlayerBoard()
+    enemyLocations = boards.selectBoard(n[0])
+    playerBoard = boards.selectBoard(n[1])
     
     print("----BATTLESHIP----")
         
