@@ -37,28 +37,41 @@ def selectTarget():
     return n
         
 #Target a ship. i is coordinates of initial hit.
+#TO DO: Fix bug where enemy hits all guesses at once
+#TO DO: Fix bug where it won't change back to guessing mode
 def targeting(board, i):
-    pass
+    n = targetingGuess(i, [0,1], board)
+    if n != i:
+        n = targetingGuess(i, [0,-1], board)
+    if n != i:
+        n = targetingGuess(i, [1,0], board)
+    if n != i:
+        n = targetingGuess(i, [-1,0], board)
+    if n != i:
+        return True
+    else:
+        return False
 
 #Guess for a direction
 def targetingGuess(i, vector, board):
     if validDirection(i, vector, board) == True:
-        if board[row][col] == "o":
+        if board[i[0]][i[1]] == "o":
             #It's a hit!
-            board[row][col] = "*"
-        elif board[row][col] == "~":
+            board[i[0]][i[1]] = "*"
+        elif board[i[0]][i[1]] == "~":
             #It's a miss
-            board[row][col] = "X"
+            board[i[0]][i[1]] = "X"
         else:
             i = addVectors(i,vector)
+            i = targetingGuess(i, vector, board)
     return i
 
 #Takes a target and a vector and checks that direction
 def validDirection(i, vector, board):
     n = addVectors(i, vector)
-    if (row < 0 or row > BOARD_SIZE - 1) or (col < 0 or col > BOARD_SIZE - 1):
+    if (i[0] < 0 or i[0] > BOARD_SIZE - 1) or (i[1] < 0 or i[1] > BOARD_SIZE - 1):
         return False
-    elif board[row][col] == "X":
+    elif board[i[0]][i[1]] == "X":
         return False
     else:
         return True
