@@ -47,7 +47,7 @@ def main():
                 target = [99,99] #Set to null, ship was sunk
         
         #Check if either player is dead
-        if not isAlive(enemyLocations):
+        if not isAlive(enemyBoard):
             enemyDead = True
         elif not isAlive(playerBoard):
             playerDead = True
