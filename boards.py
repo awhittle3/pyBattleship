@@ -71,7 +71,7 @@ def selectRand():
 def selectBoard(n):
     return {
         1 : board1,
-        2 : board1,
+        2 : board2,
         3 : board3,
         4 : board4,
         5 : board5
