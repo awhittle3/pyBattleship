@@ -37,16 +37,17 @@ def selectTarget():
     return n
         
 #Target a ship. i is coordinates of initial hit.
-#TO DO: Fix bug where enemy hits all guesses at once
 #TO DO: Fix bug where it won't change back to guessing mode
 def targeting(board, i):
-    n = targetingGuess(i, [0,1], board)
-    if n != i:
+    if validDirection(i, [0,1], board) == True:
+        n = targetingGuess(i, [0,1], board)
+    elif validDirection(i, [0,-1], board) == True:
         n = targetingGuess(i, [0,-1], board)
-    if n != i:
+    elif validDirection(i, [1,0], board) == True:
         n = targetingGuess(i, [1,0], board)
-    if n != i:
+    else:
         n = targetingGuess(i, [-1,0], board)
+        
     if n != i:
         return True
     else:
@@ -54,22 +55,21 @@ def targeting(board, i):
 
 #Guess for a direction
 def targetingGuess(i, vector, board):
-    if validDirection(i, vector, board) == True:
-        if board[i[0]][i[1]] == "o":
-            #It's a hit!
-            board[i[0]][i[1]] = "*"
-        elif board[i[0]][i[1]] == "~":
-            #It's a miss
-            board[i[0]][i[1]] = "X"
-        else:
-            i = addVectors(i,vector)
-            i = targetingGuess(i, vector, board)
+    if board[i[0]][i[1]] == "o":
+        #It's a hit!
+        board[i[0]][i[1]] = "*"
+    elif board[i[0]][i[1]] == "~":
+        #It's a miss
+        board[i[0]][i[1]] = "X"
+    else:
+        i = addVectors(i,vector)
+        i = targetingGuess(i, vector, board)
     return i
 
 #Takes a target and a vector and checks that direction
 def validDirection(i, vector, board):
     n = addVectors(i, vector)
-    if (i[0] < 0 or i[0] > BOARD_SIZE - 1) or (i[1] < 0 or i[1] > BOARD_SIZE - 1):
+    if (i[0] < 0 or i[0] >= (BOARD_SIZE - 1)) or (i[1] < 0 or i[1] >= (BOARD_SIZE - 1)):
         return False
     elif board[i[0]][i[1]] == "X":
         return False
