@@ -13,7 +13,14 @@ def main():
     enemyLocations = boards.selectBoard(n[0])
     playerBoard = boards.selectBoard(n[1])
     
-    print("----BATTLESHIP----")
+    #Print legend
+    print("~ is empty ocean")
+    print("o are your ships")
+    print("X are misses")
+    print("* are hits")
+    input("Press enter to continue")
+    
+    print("\n----BATTLESHIP----")
         
     while not playerDead and not enemyDead:
         boards.printBoards(enemyBoard, playerBoard)
