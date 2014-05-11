@@ -68,7 +68,7 @@ def targetingGuess(i, vector, board):
 #Takes a target and a vector and checks that direction
 def validDirection(i, vector, board):
     n = addVectors(i, vector)
-    if (i[0] < 0 or i[0] >= (BOARD_SIZE - 1)) or (i[1] < 0 or i[1] >= (BOARD_SIZE - 1)):
+    if (i[0] < 0 or i[0] > (BOARD_SIZE - 1)) or (i[1] < 0 or i[1] > (BOARD_SIZE - 1)):
         return False
     elif board[i[0]][i[1]] == "X":
         return False
