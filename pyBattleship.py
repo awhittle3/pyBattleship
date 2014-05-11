@@ -48,9 +48,9 @@ def main():
                 targetingMode = True #Ship was hit, target ship
         else:
             #Try to sink a targeted ship
-            targetingMode = enemyAI.targeting(playerBoard, target)
-            if targetingMode == False:
-                target = [99,99] #Set to null, ship was sunk
+            target = enemyAI.targeting(playerBoard, target)
+            if target == [99,99]:
+                targetingMode = False #Set to null, ship was sunk
         
         #Check if either player is dead
         if not isAlive(enemyBoard):

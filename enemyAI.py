@@ -45,22 +45,21 @@ def targeting(board, i):
         n = targetingGuess(i, [0,-1], board)
     elif validDirection(i, [1,0], board) == True:
         n = targetingGuess(i, [1,0], board)
-    else:
+    elif validDirection(i, [1,0], board) == True:
         n = targetingGuess(i, [-1,0], board)
-        
-    if n != i:
-        return True
     else:
-        return False
+        return [99,99]
+    return n
 
 #Guess for a direction
 def targetingGuess(i, vector, board):
-    if board[i[0]][i[1]] == "o":
+    n = addVectors(i, vector)
+    if board[n[0]][n[1]] == "o":
         #It's a hit!
-        board[i[0]][i[1]] = "*"
-    elif board[i[0]][i[1]] == "~":
+        board[n[0]][n[1]] = "*"
+    elif board[n[0]][n[1]] == "~":
         #It's a miss
-        board[i[0]][i[1]] = "X"
+        board[n[0]][n[1]] = "X"
     else:
         i = addVectors(i,vector)
         i = targetingGuess(i, vector, board)
