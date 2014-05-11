@@ -87,6 +87,9 @@ def makeEnemyBoard():
 
 #Prints two boards
 def printBoards(board1, board2):
+
+    count = 1
+    num = []
     
     size1 = len(board1)
     size2 = len(board2)
@@ -95,8 +98,12 @@ def printBoards(board1, board2):
         print("Error: Player and enemy boards not same size")
     
     #Print boards with separator
+    for n in range(1,11):
+        num.append(str(n))
+    print(" ".join(num))
     for line in board1:
-        print(" ".join(line))
+        print(" ".join(line) + " " + str(count))
+        count += 1
     
     print("-" * size1 * 2)
     
