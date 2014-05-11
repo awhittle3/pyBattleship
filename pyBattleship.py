@@ -2,7 +2,6 @@ import boards
 import enemyAI
 
 def main():
-    MAX_HITS = 17
     enemyDead = False
     playerDead = False
     targetingMode = False
@@ -61,6 +60,7 @@ def main():
         print("YOU LOSE!")
 
 def isAlive(board):
+    MAX_HITS = 17
     count = 0
     for line in board:
         for space in line:
