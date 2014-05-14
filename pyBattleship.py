@@ -25,20 +25,19 @@ def main():
     while not playerDead and not enemyDead:
         boards.printBoards(enemyBoard, playerBoard)
         print("Turn " + str(turn))
-        row = int(input("Guess row: ")) - 1
-        col = int(input("Guess coloumn: ")) - 1
+        i = userInput()
         
         #Player choice evaluated
-        if(row < 0 or row > boards.BOARD_SIZE - 1) or (col < 0 or col > boards.BOARD_SIZE - 1):
+        if(i[0] < 0 or i[0] > boards.BOARD_SIZE - 1) or (i[1] < 0 or i[1] > boards.BOARD_SIZE - 1):
             print("Oops, that's not even in the ocean.")
-        elif(enemyBoard[row][col] == "X" or enemyBoard[row][col] == "*"):
+        elif(enemyBoard[i[0]][i[1]] == "X" or enemyBoard[i[0]][i[1]] == "*"):
                 print("You guessed that one already.")
-        elif enemyLocations[row][col] == "o":
+        elif enemyLocations[i[0]][i[1]] == "o":
             #It's a hit!
-            enemyBoard[row][col] = "*"
+            enemyBoard[i[0]][i[1]] = "*"
         else:
             #It's a miss
-            enemyBoard[row][col] = "X"        
+            enemyBoard[i[0]][i[1]] = "X"        
         
         #Enemy turn
         if targetingMode == False:
@@ -65,6 +64,17 @@ def main():
         print("YOU WIN!")
     else:
         print("YOU LOSE!")
+
+def userInput():
+    try:
+        row = int(input("Guess row: ")) - 1
+        col = int(input("Guess coloumn: ")) - 1
+        n = [row,col]
+    except(ValueError):
+        print("Error: Input is not a number")
+        n = userInput()
+    
+    return n
 
 def isAlive(board):
     MAX_HITS = 17
