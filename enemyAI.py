@@ -78,29 +78,6 @@ def targetingGuess(i, vector, board):
             pass
     return i
 
-
-def parseHits(board):
-    for row in board:
-        for col in row:
-            if board[row][col] == "*":
-                #There is a hit
-                sh = congeal(board, row, col,"h")
-                sv = congeal(board, row, col,"v")
-                if "**" in sh or "**" in sv:
-                    #There are two hits
-                    pass
-                    
-
-def congeal(board, row, col, orientation):
-    s = ''
-    if orientation == "h":
-        for c in board[row]:
-            s += c
-    elif orientation == "v":
-        for r in range(0,len(board)):
-            s += board[r][col]
-    return s
-
 #Takes a target and a vector and checks that direction
 def validDirection(i, vector, board):
     n = addVectors(i, vector)
