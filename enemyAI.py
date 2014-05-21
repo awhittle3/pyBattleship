@@ -75,7 +75,7 @@ def targetingGuess(i, vector, board):
             #It's a miss
             board[n[0]][n[1]] = "X"
         else:
-            pass
+            return [99,99]
     return i
 
 #Takes a target and a vector and checks that direction

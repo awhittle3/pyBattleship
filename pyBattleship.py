@@ -68,7 +68,7 @@ def main():
 def userInput():
     try:
         row = int(input("Guess row: ")) - 1
-        col = int(input("Guess coloumn: ")) - 1
+        col = int(input("Guess column: ")) - 1
         n = [row,col]
     except(ValueError):
         print("Error: Input is not a number")
