@@ -1,5 +1,6 @@
 import boards
 import enemyAI
+import playAnchors
 
 def main():
     enemyDead = False
@@ -21,6 +22,7 @@ def main():
     input("Press enter to continue")
     
     print("\n----BATTLESHIP----")
+    playAnchors.playSong()
         
     while not playerDead and not enemyDead:
         boards.printBoards(enemyBoard, playerBoard)
